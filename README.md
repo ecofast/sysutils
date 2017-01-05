@@ -3,15 +3,16 @@ This package implements some useful system utility functions in the way of which
 At present, it is still under development.</br></br>
 
 HOW TO USE:</br>
+
 package main
 
 import (
 	"fmt"
-	
+
 	"github.com/ecofast/sysutils"
 )
 
 func main() {
-	fmt.Println(sysutils.IncludeTrailingBackslash(`E:\admin\Software\`))
+	fmt.Println(sysutils.IncludeTrailingBackslash(`E:\Admin\Software`))
 	fmt.Println(sysutils.GetApplicationPath())
-}
+} 

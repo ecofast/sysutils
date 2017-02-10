@@ -26,6 +26,24 @@ func BoolToStr(b bool) string {
 	return "0"
 }
 
+func IntToStr(i int) string {
+	return strconv.FormatInt(int64(i), 10)
+}
+
+func StrToInt(s string) int {
+	if ret, err := strconv.Atoi(s); err == nil {
+		return ret
+	}
+	panic(fmt.Sprintf("Cannot convert %s to int!", s))
+}
+
+func StrToIntDef(s string, defaultvalue int) int {
+	if ret, err := strconv.Atoi(s); err == nil {
+		return ret
+	}
+	return defaultvalue
+}
+
 func StrToBool(s string) bool {
 	if ret, err := strconv.ParseBool(s); err == nil {
 		return ret
@@ -35,6 +53,15 @@ func StrToBool(s string) bool {
 
 func FloatToStr(f float64) string {
 	return fmt.Sprintf("%g", f)
+}
+
+func BytesToStr(bs []byte) string {
+	for i := 0; i < len(bs); i++ {
+		if bs[i] == 0 {
+			return string(bs[0:i])
+		}
+	}
+	return string(bs)
 }
 
 func GetApplicationPath() string {
@@ -69,4 +96,13 @@ func IncludeTrailingBackslash(path string) string {
 		return path + string(os.PathSeparator)
 	}
 	return path
+}
+
+func ChangeFileExt(filename, extension string) string {
+	i := strings.LastIndex(filename, ".")
+	if i >= 0 {
+		ret := filename[:i]
+		return ret + extension
+	}
+	return filename + extension
 }

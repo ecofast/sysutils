@@ -106,3 +106,19 @@ func ChangeFileExt(filename, extension string) string {
 	}
 	return filename + extension
 }
+
+func DateTimeToStr(dt time.Time) string {
+	year, month, day := dt.Date()
+	hour, min, sec := dt.Clock()
+	return fmt.Sprintf("%d-%d-%d %d:%d:%d", year, int(month), day, hour, min, sec)
+}
+
+func DateToStr(dt time.Time) string {
+	year, month, day := dt.Date()
+	return fmt.Sprintf("%d-%d-%d", year, int(month), day)
+}
+
+func TimeToStr(dt time.Time) string {
+	hour, min, sec := dt.Clock()
+	return fmt.Sprintf("%d:%d:%d", hour, min, sec)
+}

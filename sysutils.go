@@ -120,5 +120,5 @@ func DateToStr(dt time.Time) string {
 
 func TimeToStr(dt time.Time) string {
 	hour, min, sec := dt.Clock()
-	return fmt.Sprintf("%d:%d:%d", hour, min, sec)
+	return fmt.Sprintf("%d:%02d:%02d", hour, min, sec)
 }

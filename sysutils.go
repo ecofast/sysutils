@@ -64,6 +64,38 @@ func BytesToStr(bs []byte) string {
 	return string(bs)
 }
 
+func BytesToUInt8(bs []byte) uint8 {
+	return uint8(bs[0])
+}
+
+func BytesToUInt16(bs []byte) uint16 {
+	return binary.LittleEndian.Uint16(bs)
+}
+
+func BytesToUInt32(bs []byte) uint32 {
+	return binary.LittleEndian.Uint32(bs)
+}
+
+func UInt16ToBytes(v uint16) []byte {
+	bs := make([]byte, 2)
+	binary.LittleEndian.PutUint16(bs, v)
+	return bs
+}
+
+func Int16ToBytes(v int16) []byte {
+	return UInt16ToBytes(uint16(v))
+}
+
+func UInt32ToBytes(v uint32) []byte {
+	bs := make([]byte, 4)
+	binary.LittleEndian.PutUint32(bs, v)
+	return bs
+}
+
+func Int32ToBytes(v int32) []byte {
+	return UInt32ToBytes(uint32(v))
+}
+
 func GetApplicationPath() string {
 	path := filepath.Dir(os.Args[0])
 	return path + string(os.PathSeparator)
@@ -110,15 +142,15 @@ func ChangeFileExt(filename, extension string) string {
 func DateTimeToStr(dt time.Time) string {
 	year, month, day := dt.Date()
 	hour, min, sec := dt.Clock()
-	return fmt.Sprintf("%d-%d-%d %d:%d:%d", year, int(month), day, hour, min, sec)
+	return fmt.Sprintf("%d-%02d-%02d %02d:%02d:%02d", year, int(month), day, hour, min, sec)
 }
 
 func DateToStr(dt time.Time) string {
 	year, month, day := dt.Date()
-	return fmt.Sprintf("%d-%d-%d", year, int(month), day)
+	return fmt.Sprintf("%d-%02d-%02d", year, int(month), day)
 }
 
 func TimeToStr(dt time.Time) string {
 	hour, min, sec := dt.Clock()
-	return fmt.Sprintf("%d:%02d:%02d", hour, min, sec)
+	return fmt.Sprintf("%02d:%02d:%02d", hour, min, sec)
 }

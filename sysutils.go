@@ -6,11 +6,13 @@
 package sysutils
 
 import (
+	"encoding/binary"
 	"fmt"
 	"os"
 	"path/filepath"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func CheckError(e error) {
@@ -153,4 +155,12 @@ func DateToStr(dt time.Time) string {
 func TimeToStr(dt time.Time) string {
 	hour, min, sec := dt.Clock()
 	return fmt.Sprintf("%02d:%02d:%02d", hour, min, sec)
+}
+
+func MilliSecondsBetween(now, then time.Time) int64 {
+	return int64(now.Sub(then) / time.Millisecond)
+}
+
+func SecondsBetween(now, then time.Time) int64 {
+	return MilliSecondsBetween(now, then) / 1000
 }

@@ -134,7 +134,7 @@ func IncludeTrailingBackslash(path string) string {
 
 func ChangeFileExt(filename, extension string) string {
 	i := strings.LastIndex(filename, ".")
-	if i >= 0 {
+	if i > 0 {
 		ret := filename[:i]
 		return ret + extension
 	}
